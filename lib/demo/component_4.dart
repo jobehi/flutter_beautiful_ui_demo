@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'code_screen/code_screen.dart';
 import 'component_5.dart';
 
 class Component4 extends StatelessWidget {
@@ -10,7 +11,18 @@ class Component4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const CodeScreen(
+                          componentNumber: 4,
+                        )));
+              },
+              icon: const Icon(Icons.code))
+        ],
+      ),
       bottomNavigationBar: SizedBox(
         height: 80,
         child: Center(

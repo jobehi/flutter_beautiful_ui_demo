@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myflutterapp/demo/code_screen/code_screen.dart';
 import 'package:myflutterapp/demo/component_2.dart';
 
 class Component1 extends StatelessWidget {
@@ -7,7 +8,18 @@ class Component1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const CodeScreen(
+                          componentNumber: 1,
+                        )));
+              },
+              icon: const Icon(Icons.code))
+        ],
+      ),
       body: SafeArea(
         child: Center(
           child: Column(

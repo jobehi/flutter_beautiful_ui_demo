@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myflutterapp/demo/code_screen/code_screen.dart';
 import 'package:myflutterapp/demo/component_6/full_screen.dart';
 
 class Component6 extends StatefulWidget {
@@ -59,6 +60,16 @@ class _Component6State extends State<Component6> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const CodeScreen(
+                            componentNumber: 6,
+                          )));
+                },
+                icon: const Icon(Icons.code))
+          ],
         ),
         body: SafeArea(
           child: Center(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myflutterapp/demo/component_6/component_6.dart';
 
+import 'code_screen/code_screen.dart';
+
 class Component5 extends StatelessWidget {
   const Component5({Key? key}) : super(key: key);
 
@@ -18,6 +20,16 @@ class Component5 extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const CodeScreen(
+                            componentNumber: 5,
+                          )));
+                },
+                icon: const Icon(Icons.code))
+          ],
         ),
         body: SafeArea(
           child: Center(

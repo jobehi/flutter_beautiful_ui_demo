@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'code_screen/code_screen.dart';
 import 'component_3.dart';
 
 class Component2 extends StatelessWidget {
@@ -9,7 +10,17 @@ class Component2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        const CodeScreen(componentNumber: 2)));
+              },
+              icon: const Icon(Icons.code))
+        ],
+      ),
       body: SafeArea(
         child: Center(
           child: Column(
