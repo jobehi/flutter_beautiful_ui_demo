@@ -14,8 +14,7 @@ class HomeScreen2 extends StatefulWidget {
 class _HomeScreen2State extends State<HomeScreen2> {
   String myEquation = '';
   String currentDouble = '';
-  String currentOperator = '';
-  List<double> equationElements = [];
+  bool isResult = false;
 
   var myButtons = [
     [
@@ -50,6 +49,12 @@ class _HomeScreen2State extends State<HomeScreen2> {
   ];
 
   addElementToEquation(String element) {
+    if (isResult) {
+      currentDouble = '';
+      myEquation = '';
+      isResult = false;
+    }
+
     switch (element) {
       case '+':
         myEquation = myEquation + currentDouble + element;
@@ -98,6 +103,7 @@ class _HomeScreen2State extends State<HomeScreen2> {
     myEquation = myEquation + currentDouble;
     print(myEquation);
     currentDouble = myEquation.interpret().toString();
+    isResult = true;
   }
 
   @override
