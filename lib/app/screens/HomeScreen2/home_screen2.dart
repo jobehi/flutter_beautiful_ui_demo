@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 
+import 'widgets/mon_bouton.dart';
+
 class HomeScreen2 extends StatefulWidget {
   HomeScreen2({Key? key}) : super(key: key);
 
@@ -10,6 +12,10 @@ class HomeScreen2 extends StatefulWidget {
 }
 
 class _HomeScreen2State extends State<HomeScreen2> {
+  String myEquation = '';
+  double result = 0;
+  String currentDouble = '';
+
   var myButtons = [
     [
       {"content": "C", "is_dark": false, "does_stretch": false},
@@ -42,6 +48,14 @@ class _HomeScreen2State extends State<HomeScreen2> {
     ],
   ];
 
+  addElementToEquation(String element) {
+    myEquation = myEquation + element;
+    currentDouble = myEquation;
+    setState(() {});
+
+    print(myEquation);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,14 +80,15 @@ class _HomeScreen2State extends State<HomeScreen2> {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   '12*(8+3)-3',
                   style: TextStyle(color: Colors.grey),
                 ),
                 Text(
-                  '129',
-                  style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+                  currentDouble,
+                  style: const TextStyle(
+                      fontSize: 60, fontWeight: FontWeight.bold),
                 )
               ],
             ),
@@ -84,6 +99,8 @@ class _HomeScreen2State extends State<HomeScreen2> {
                         children: line
                             // boucle sur la ligne (sous liste)
                             .map((element) => MonBouton(
+                                  callBack: () => addElementToEquation(
+                                      element["content"] as String),
                                   content: element["content"] as String,
                                   isDark: element["is_dark"] as bool,
                                   doesStretch: element["does_stretch"] as bool,
@@ -91,46 +108,6 @@ class _HomeScreen2State extends State<HomeScreen2> {
                             .toList()))
                     .toList())
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class MonBouton extends StatelessWidget {
-  const MonBouton({
-    Key? key,
-    required this.content,
-    this.isDark = true,
-    this.doesStretch = false,
-  }) : super(key: key);
-
-  final String content;
-  final bool isDark;
-  final bool doesStretch;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      flex: doesStretch ? 2 : 1,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 2),
-            borderRadius: BorderRadius.circular(15),
-            color: isDark ? Colors.black : Colors.white,
-          ),
-          height: 70,
-          child: Center(
-            child: Text(
-              content,
-              style: TextStyle(
-                  color: isDark ? Colors.white : Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
         ),
       ),
     );
