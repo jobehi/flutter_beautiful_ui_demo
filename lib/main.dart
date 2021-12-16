@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myflutterapp/app/screens/HistoryScreen/history_screen.dart';
 import 'package:myflutterapp/app/screens/HomeScreen/home_screen.dart';
 import 'package:myflutterapp/app/screens/HomeScreen2/home_screen2.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen2(),
+      home: HistoryScreen(),
     );
   }
 }

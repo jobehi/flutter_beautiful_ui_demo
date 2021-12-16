@@ -99,9 +99,7 @@ class _HomeScreen2State extends State<HomeScreen2> {
   }
 
   evaluateEquation() {
-    print(myEquation);
     myEquation = myEquation + currentDouble;
-    print(myEquation);
     currentDouble = myEquation.interpret().toString();
     isResult = true;
   }
