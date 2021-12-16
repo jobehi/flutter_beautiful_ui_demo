@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:function_tree/function_tree.dart';
 import 'widgets/mon_bouton.dart';
 
 class HomeScreen2 extends StatefulWidget {
@@ -13,8 +13,9 @@ class HomeScreen2 extends StatefulWidget {
 
 class _HomeScreen2State extends State<HomeScreen2> {
   String myEquation = '';
-  double result = 0;
   String currentDouble = '';
+  String currentOperator = '';
+  List<double> equationElements = [];
 
   var myButtons = [
     [
@@ -49,11 +50,54 @@ class _HomeScreen2State extends State<HomeScreen2> {
   ];
 
   addElementToEquation(String element) {
-    myEquation = myEquation + element;
-    currentDouble = myEquation;
-    setState(() {});
+    switch (element) {
+      case '+':
+        myEquation = myEquation + currentDouble + element;
+        currentDouble = '';
 
+        break;
+      case '-':
+        myEquation = myEquation + currentDouble + element;
+        currentDouble = '';
+
+        break;
+      case '/':
+        myEquation = myEquation + currentDouble + element;
+        currentDouble = '';
+        break;
+      case '(':
+        myEquation = myEquation + currentDouble + element;
+        currentDouble = '';
+        break;
+      case ')':
+        myEquation = myEquation + currentDouble + element;
+        currentDouble = '';
+
+        break;
+      case 'X':
+        myEquation = myEquation + currentDouble + '*';
+        currentDouble = '';
+
+        break;
+      case '=':
+        evaluateEquation();
+        break;
+      case 'C':
+        currentDouble = '';
+        myEquation = '';
+
+        break;
+      default:
+        currentDouble = currentDouble + element;
+    }
+    setState(() {});
+  }
+
+  evaluateEquation() {
     print(myEquation);
+    myEquation = myEquation + currentDouble;
+    print(myEquation);
+    currentDouble = myEquation.interpret().toString();
   }
 
   @override
@@ -81,8 +125,8 @@ class _HomeScreen2State extends State<HomeScreen2> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Text(
-                  '12*(8+3)-3',
+                Text(
+                  myEquation,
                   style: TextStyle(color: Colors.grey),
                 ),
                 Text(
